@@ -14,7 +14,7 @@ public class Category {
     }
 
 
-    public long getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
     public void setCategoryId(Long categoryId) {
