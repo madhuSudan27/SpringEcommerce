@@ -10,6 +10,7 @@ import java.util.List;
 public class CategoryServiceImpl implements  CategoryService{
 
     private final List<Category> categoryList;
+    private  Long nextId = 1L;
 
     CategoryServiceImpl() {
         categoryList =  new ArrayList<>();
@@ -22,6 +23,7 @@ public class CategoryServiceImpl implements  CategoryService{
 
     @Override
     public void createCategory(Category category) {
+        category.setCategoryId(nextId++);
         categoryList.add(category);
     }
 }
