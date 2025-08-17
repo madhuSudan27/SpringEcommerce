@@ -1,6 +1,8 @@
 package com.ecom.ecom.service;
 
 import com.ecom.ecom.model.Category;
+import com.ecom.ecom.repositories.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
@@ -12,35 +14,41 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements  CategoryService{
 
-    private final List<Category> categoryList;
-    private  Long nextId = 1L;
 
-    CategoryServiceImpl() {
-        categoryList =  new ArrayList<>();
-    }
+//    private final List<Category> categoryList;
+//    private  Long nextId = 1L;
+
+
+     private final CategoryRepository categoryRepository;
+
+     CategoryServiceImpl(CategoryRepository categoryRepository) {
+         this.categoryRepository = categoryRepository;
+     }
+
+//    CategoryServiceImpl() {
+//        categoryList =  new ArrayList<>();
+//    }
 
     @Override
     public List<Category> getAllCategories() {
-        return new ArrayList<>(categoryList);
+        return categoryRepository.findAll();
     }
 
     @Override
     public void createCategory(Category category) {
-        category.setCategoryId(nextId++);
-        categoryList.add(category);
+        categoryRepository.save(category);
     }
 
     @Override
     public String deleteCategory(Long categoryId) {
 
-        Category category = categoryList.stream()
-                        .filter(c -> c.getCategoryId().equals(categoryId))
-                        .findFirst()
+        // get the list of categories from the database>
+        Category category =categoryRepository.findById(categoryId)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
 
 
         // delete the category from the list
-        categoryList.remove(category);
+        categoryRepository.delete(category);
 
         return "Category deleted successfully with Id: " + category.getCategoryId();
     }
@@ -48,12 +56,12 @@ public class CategoryServiceImpl implements  CategoryService{
     @Override
     public Category updateCategory(Long categoryId, Category category) {
 
-        Category existingCategory = categoryList.stream()
-                .filter(c -> c.getCategoryId().equals(categoryId))
-                .findFirst()
+        Category existingCategory = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
 
-        existingCategory.setCategoryName(category.getCategoryName());
+        category.setCategoryId(categoryId);
+
+        existingCategory = categoryRepository.save(category);
 
         return existingCategory;
     }
