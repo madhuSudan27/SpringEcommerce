@@ -1,14 +1,12 @@
-package com.ecom.ecom.service;
+package com.ecom.service;
 
-import com.ecom.ecom.model.Category;
-import com.ecom.ecom.repositories.CategoryRepository;
+import com.ecom.model.Category;
+import com.ecom.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
