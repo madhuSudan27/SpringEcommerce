@@ -1,0 +1,53 @@
+[33mcommit c675b91650b2f7129b8bfa9e7de29a6c85198d54[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Mon Aug 18 11:01:16 2025 +0530
+
+    implemented custom exception handler
+
+[33mcommit 932a4d3cb8d0a58c648bb498de05cf9109df3d52[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Mon Aug 18 10:11:51 2025 +0530
+
+    Modified package structure
+
+[33mcommit 1a1ede18e065879f36614f484fba8e48acd18084[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Mon Aug 18 09:16:36 2025 +0530
+
+    Integrated Lombok
+
+[33mcommit 858af0aa85e0f443a3485946b5b244cc119a87c7[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Sun Aug 17 21:49:19 2025 +0530
+
+    made Category persistent
+
+[33mcommit 7704bd64de9834b7a26fb460f1158d01b816ec98[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Sun Aug 17 18:19:16 2025 +0530
+
+    Configured in-memory H2 DB
+
+[33mcommit 253e9846e8d2e2dde8cef8aac6eb7d1763df53fb[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Sun Aug 17 17:24:27 2025 +0530
+
+    implemented category controllers
+
+[33mcommit d8399a7c563db0c096badf1fca739ff56de40199[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Sun Aug 17 11:25:03 2025 +0530
+
+    fixed unique ID problem
+
+[33mcommit 9b1ad1147be1b3e9930878021418f1c041a91043[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Sun Aug 17 11:18:49 2025 +0530
+
+    CategoryService GET & POST impl
+
+[33mcommit 972a1846fdd21b44e0e381703bf1249dc9019db5[m
+Author: madhuSudan27 <122591446+madhuSudan27@users.noreply.github.com>
+Date:   Sun Aug 17 09:50:10 2025 +0530
+
+    first commit

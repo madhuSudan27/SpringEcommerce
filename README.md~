@@ -2,7 +2,5 @@
 
     @ControllerAdvice tells Spring this class contains global exception handlers.
     @ExceptionHandler(MethodArgumentNotValidException.class) tells Spring: whenever validation fails, call this method.
-
-    e.getBindingResult() → gives you all validation results.
-    e.getBindingResult().getFieldErrors() → list of all field-level validation errors.
+    
         
