@@ -1,5 +1,6 @@
 package com.ecom.service;
 
+import com.ecom.exceptions.ResourceNotFoundException;
 import com.ecom.model.Category;
 import com.ecom.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class CategoryServiceImpl implements  CategoryService{
 
         // get the list of categories from the database>
         Category category =categoryRepository.findById(categoryId)
-                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Category", "Categoryid", categoryId));
 
 
         // delete the category from the list
@@ -52,7 +53,7 @@ public class CategoryServiceImpl implements  CategoryService{
     public Category updateCategory(Long categoryId, Category category) {
 
         Category existingCategory = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "Categoryid", categoryId));
 
         category.setCategoryId(categoryId);
 
