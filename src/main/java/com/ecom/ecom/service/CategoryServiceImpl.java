@@ -15,19 +15,16 @@ import java.util.List;
 public class CategoryServiceImpl implements  CategoryService{
 
 
-//    private final List<Category> categoryList;
-//    private  Long nextId = 1L;
 
 
      private final CategoryRepository categoryRepository;
 
+     @Autowired
      CategoryServiceImpl(CategoryRepository categoryRepository) {
          this.categoryRepository = categoryRepository;
      }
 
-//    CategoryServiceImpl() {
-//        categoryList =  new ArrayList<>();
-//    }
+
 
     @Override
     public List<Category> getAllCategories() {
