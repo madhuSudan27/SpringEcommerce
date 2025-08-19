@@ -3,11 +3,13 @@ package com.ecom.service;
 import com.ecom.exceptions.ApiException;
 import com.ecom.exceptions.ResourceNotFoundException;
 import com.ecom.model.Category;
+import com.ecom.payload.CategoryDTO;
+import com.ecom.payload.CategoryResponse;
 import com.ecom.repositories.CategoryRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 
@@ -16,20 +18,31 @@ public class CategoryServiceImpl implements  CategoryService{
 
      private final CategoryRepository categoryRepository;
 
+     private final ModelMapper modelMapper;
+
      @Autowired
-     CategoryServiceImpl(CategoryRepository categoryRepository) {
+     CategoryServiceImpl(CategoryRepository categoryRepository, ModelMapper modelMapper) {
          this.categoryRepository = categoryRepository;
+         this.modelMapper = modelMapper;
      }
 
 
 
     @Override
-    public List<Category> getAllCategories() {
+    public CategoryResponse getAllCategories() {
          List<Category> categories = categoryRepository.findAll();
          if(categories.isEmpty()){
              throw new ApiException("No categories found!");
          }
-         return categories;
+
+         List<CategoryDTO> categoriesDTOS = categories.stream()
+                 .map(category -> modelMapper.map(category, CategoryDTO.class))
+                 .toList();
+
+        CategoryResponse categoryResponse = new CategoryResponse();
+        categoryResponse.setCategories(categoriesDTOS);
+
+         return categoryResponse;
     }
 
     @Override
