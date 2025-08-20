@@ -36,8 +36,7 @@
   → Fetches page `0` with `10` items.
 
 - With custom params:  
-    → `?pageNumber=1&pageSize=5` - 
-    → Fetches page `1` with `5` items.
+  → Fetches page `1` with `5` items.
 
 ### 🔹 Notes
 - `@RequestParam(defaultValue = "...")` → makes a parameter **optional**.
