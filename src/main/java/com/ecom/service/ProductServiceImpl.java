@@ -1,0 +1,51 @@
+package com.ecom.service;
+
+import com.ecom.exceptions.ResourceNotFoundException;
+import com.ecom.model.Category;
+import com.ecom.model.Product;
+import com.ecom.payload.ProductDTO;
+import com.ecom.repositories.CategoryRepository;
+import com.ecom.repositories.ProductRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public ProductDTO addProduct(Product product, Long categoryId){
+        // need to get the category from the database
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "Categoryid", categoryId));
+
+        // if category is found, set the category to the product
+        product.setCategory(category);
+
+        double specialPrice = product.getProductPrice() * (1 - product.getDiscount() / 100.0);
+        product.setProductSpecialPrice(specialPrice);
+
+        if(product.getProductImage() == null  || product.getProductImage().isEmpty()){
+            product.setProductImage("default.jpg");
+        }
+
+        // save the product to the database
+        Product savedProduct = productRepository.save(product);
+
+        // return the saved product
+        ProductDTO productDTO = modelMapper.map(savedProduct, ProductDTO.class);
+        return productDTO;
+
+    }
+
+}
