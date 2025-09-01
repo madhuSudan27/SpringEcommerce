@@ -53,16 +53,19 @@ public class ProductServiceImpl implements ProductService {
 
 
     public ProductResponse getAllProducts(){
+
         List<Product> products = productRepository.findAll();
+
+        // i have to convert this product into DTO
+
         List<ProductDTO> productDTOs = products
                 .stream()
-                .map(product -> modelMapper.map(product, ProductDTO.class))
-                .toList(); // <Product, ProductDTO>
+                .map(product -> modelMapper.map(product, ProductDTO.class)).toList(); // <Product, ProductDTO>
 
         ProductResponse productResponse = new ProductResponse();
-        productResponse.setProducts(productDTOs);
 
         return productResponse;
+
     }
 
 }
