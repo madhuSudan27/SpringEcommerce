@@ -16,6 +16,7 @@ public class MyGlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> myMethodArgumentNotValidException(MethodArgumentNotValidException e){
+
         Map<String, String> response = new HashMap<>();
         e.getBindingResult().getFieldErrors().forEach(error ->{
                     String  field = error.getField();
@@ -24,7 +25,10 @@ public class MyGlobalExceptionHandler {
                 }
 
         );
+
+
         return  new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

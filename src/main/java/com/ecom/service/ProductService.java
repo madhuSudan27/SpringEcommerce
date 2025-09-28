@@ -7,4 +7,11 @@ import com.ecom.payload.ProductResponse;
 public interface ProductService {
     ProductDTO addProduct(Product product, Long categoryId);
     ProductResponse getAllProducts();
+    ProductResponse getProductsByCategory(Long categoryId);
+
+    ProductResponse getProductByKeyword(String keyword);
+
+    ProductDTO updateProduct(Long productId, Product product);
+
+    ProductDTO deleteProduct(Long productId);
 }
